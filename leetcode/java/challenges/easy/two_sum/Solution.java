@@ -1,4 +1,4 @@
-package leetcode.java.challenges.two_sum;
+package leetcode.java.challenges.easy.two_sum;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;

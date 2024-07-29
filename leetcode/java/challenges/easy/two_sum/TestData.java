@@ -1,4 +1,4 @@
-package leetcode.java.challenges.two_sum;
+package leetcode.java.challenges.easy.two_sum;
 
 public class TestData {
     private int[] actualOutput;

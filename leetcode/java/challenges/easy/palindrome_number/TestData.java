@@ -1,4 +1,4 @@
-package leetcode.java.challenges.palindrome_number;
+package leetcode.java.challenges.easy.palindrome_number;
 
 public class TestData {
     private boolean actualOutput;
