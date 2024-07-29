@@ -1,19 +1,19 @@
-package leetcode.java.template;
+package leetcode.java.challenges.medium.add_two_numbers;
 
 public class TestData {
-    private type actualOutput;
-    private type expectedOutput;
+    private ListNode actualOutput;
+    private ListNode expectedOutput;
 
-    public TestData(type actualOutput, type expectedOutput) {
+    public TestData(ListNode actualOutput, ListNode expectedOutput) {
         this.actualOutput = actualOutput;
         this.expectedOutput = expectedOutput;
     }
 
-    public type getActualOutput() {
+    public ListNode getActualOutput() {
         return actualOutput;
     }
 
-    public type getExpectedOutput() {
+    public ListNode getExpectedOutput() {
         return expectedOutput;
     }
 }

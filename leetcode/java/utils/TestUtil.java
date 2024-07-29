@@ -2,6 +2,8 @@ package leetcode.java.utils;
 
 import java.util.Arrays;
 
+import leetcode.java.challenges.medium.add_two_numbers.ListNode;
+
 public class TestUtil {
     private static final String RESET = "\033[0m";
     private static final String RED = "\033[0;31m";
@@ -29,5 +31,21 @@ public class TestUtil {
 
     public static Boolean areEqual(boolean bool1, boolean bool2) {
         return bool1 == bool2;
+    }
+
+    public static Boolean areEqual(ListNode linkedList1, ListNode linkedList2) {
+        ListNode cursor1 = linkedList1;
+        ListNode cursor2 = linkedList2;
+        while (cursor1 != null && cursor2 != null) {
+            if (cursor1.val != cursor2.val) {
+                return false;
+            }
+            cursor1 = cursor1.next;
+            cursor2 = cursor2.next;
+        }
+        if (cursor1 != null || cursor2 != null) {
+            return false;
+        }
+        return true;
     }
 }
