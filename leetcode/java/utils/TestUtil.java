@@ -26,4 +26,8 @@ public class TestUtil {
     public static Boolean areEqual(int[] array1, int[] array2) {
         return Arrays.equals(array1, array2);
     }
+
+    public static Boolean areEqual(boolean bool1, boolean bool2) {
+        return bool1 == bool2;
+    }
 }
