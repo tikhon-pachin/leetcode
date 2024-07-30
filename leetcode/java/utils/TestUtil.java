@@ -56,4 +56,8 @@ public class TestUtil {
     public static Boolean areEqual(double double1, double double2) {
         return double1 == double2;
     }
+
+    public static Boolean areEqual(String string1, String string2) {
+        return string1.equals(string2);
+    }
 }
