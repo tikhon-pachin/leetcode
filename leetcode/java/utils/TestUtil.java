@@ -52,4 +52,8 @@ public class TestUtil {
     public static Boolean areEqual(int integer1, int integer2) {
         return integer1 == integer2;
     }
+
+    public static Boolean areEqual(double double1, double double2) {
+        return double1 == double2;
+    }
 }
