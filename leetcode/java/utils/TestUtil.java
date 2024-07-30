@@ -48,4 +48,8 @@ public class TestUtil {
         }
         return true;
     }
+
+    public static Boolean areEqual(int integer1, int integer2) {
+        return integer1 == integer2;
+    }
 }
