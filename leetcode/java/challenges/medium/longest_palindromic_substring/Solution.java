@@ -2,25 +2,28 @@ package leetcode.java.challenges.medium.longest_palindromic_substring;
 
 import java.util.LinkedHashMap;
 
+import leetcode.java.utils.TestData;
 import leetcode.java.utils.TestUtil;
 
 public class Solution {
+    private static String method = "Solution";
+
     public static void main(String[] args) {
-        // Test suite collection:
-        LinkedHashMap<String, TestData> tests = new LinkedHashMap<String, TestData>();
+        // Tests and their inputs with expected outputs:
+        LinkedHashMap<String, TestData<String>> tests = new LinkedHashMap<String, TestData<String>>();
+        LinkedHashMap<Input, String> inputs = new LinkedHashMap<Input, String>();
+        inputs.put(new Input("babad"), "bab");
+        inputs.put(new Input("cbbd"), "bb");
+        inputs.put(new Input("abb"), "bb");
 
         // Tests:
-        tests.put("Test 1 (input: \"babad\"): ",
-                new TestData(longestPalindrome("babad"), "bab"));
-        tests.put("Test 2 (input: \"cbbd\"): ",
-                new TestData(longestPalindrome("cbbd"), "bb"));
-        tests.put("Test 3 (input: \"abb\"): ",
-                new TestData(longestPalindrome("abb"), "bb"));
+        inputs.forEach((input, expectedOutput) -> {
+            tests.put(method + " - " + input.getInput1(),
+                    new TestData<String>(longestPalindrome(input.getInput1()), expectedOutput));
+        });
 
         // Compare all output results with expected ones.
-        tests.forEach((testName, testData) -> {
-            TestUtil.test(testName, TestUtil.areEqual(testData.getActualOutput(), testData.getExpectedOutput()));
-        });
+        TestUtil.run(tests);
     }
 
     // Solution.

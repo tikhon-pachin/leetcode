@@ -3,65 +3,47 @@ package leetcode.java.challenges.easy.palindrome_number;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+import leetcode.java.utils.TestData;
 import leetcode.java.utils.TestUtil;
 
 public class Solution {
+    private static String method = "Solution";
+
     public static void main(String[] args) {
-        // Test suite collection:
-        LinkedHashMap<String, TestData> tests = new LinkedHashMap<String, TestData>();
+        // Tests and their inputs with expected outputs:
+        LinkedHashMap<String, TestData<Boolean>> tests = new LinkedHashMap<String, TestData<Boolean>>();
+        LinkedHashMap<Input, Boolean> inputs = new LinkedHashMap<Input, Boolean>();
+        inputs.put(new Input(121), true);
+        inputs.put(new Input(1221), true);
+        inputs.put(new Input(0), true);
+        inputs.put(new Input(-121), false);
+        inputs.put(new Input(10), false);
+        inputs.put(new Input(100), false);
+        inputs.put(new Input(123), false);
 
         // String Conversion tests:
-        tests.put("String Conversion test 1 (number: 121): ",
-                new TestData(isPalindromeStringConversion(121), true));
-        tests.put("String Conversion test 2 (number: 1221): ",
-                new TestData(isPalindromeStringConversion(1221), true));
-        tests.put("String Conversion test 3 (number: 0): ",
-                new TestData(isPalindromeStringConversion(0), true));
-        tests.put("String Conversion test 4 (number: -121): ",
-                new TestData(isPalindromeStringConversion(-121), false));
-        tests.put("String Conversion test 5 (number: 10): ",
-                new TestData(isPalindromeStringConversion(10), false));
-        tests.put("String Conversion test 6 (number: 100): ",
-                new TestData(isPalindromeStringConversion(100), false));
-        tests.put("String Conversion test 7 (number: 123): ",
-                new TestData(isPalindromeStringConversion(123), false));
+        method = "String Conversion";
+        inputs.forEach((input, expectedOutput) -> {
+            tests.put(method + " - " + input.getInput1(),
+                    new TestData<Boolean>(isPalindromeStringConversion(input.getInput1()), expectedOutput));
+        });
 
         // No Conversion tests:
-        tests.put("No Conversion test 1 (number: 121): ",
-                new TestData(isPalindromeNoConversion(121), true));
-        tests.put("No Conversion test 2 (number: 1221): ",
-                new TestData(isPalindromeNoConversion(1221), true));
-        tests.put("No Conversion test 3 (number: 0): ",
-                new TestData(isPalindromeNoConversion(0), true));
-        tests.put("No Conversion test 4 (number: -121): ",
-                new TestData(isPalindromeNoConversion(-121), false));
-        tests.put("No Conversion test 5 (number: 10): ",
-                new TestData(isPalindromeNoConversion(10), false));
-        tests.put("No Conversion test 6 (number: 100): ",
-                new TestData(isPalindromeNoConversion(100), false));
-        tests.put("No Conversion test 7 (number: 123): ",
-                new TestData(isPalindromeNoConversion(123), false));
+        method = "No Conversion";
+        inputs.forEach((input, expectedOutput) -> {
+            tests.put(method + " - " + input.getInput1(),
+                    new TestData<Boolean>(isPalindromeNoConversion(input.getInput1()), expectedOutput));
+        });
 
         // Reverse tests:
-        tests.put("Reverse test 1 (number: 121): ",
-                new TestData(isPalindromeReverse(121), true));
-        tests.put("Reverse test 2 (number: 1221): ",
-                new TestData(isPalindromeReverse(1221), true));
-        tests.put("Reverse test 3 (number: 0): ",
-                new TestData(isPalindromeReverse(0), true));
-        tests.put("Reverse test 4 (number: -121): ",
-                new TestData(isPalindromeReverse(-121), false));
-        tests.put("Reverse test 5 (number: 10): ",
-                new TestData(isPalindromeReverse(10), false));
-        tests.put("Reverse test 6 (number: 100): ",
-                new TestData(isPalindromeReverse(100), false));
-        tests.put("Reverse test 7 (number: 123): ",
-                new TestData(isPalindromeReverse(123), false));
+        method = "Reverse";
+        inputs.forEach((input, expectedOutput) -> {
+            tests.put(method + " - " + input.getInput1(),
+                    new TestData<Boolean>(isPalindromeReverse(input.getInput1()), expectedOutput));
+        });
 
         // Compare all output results with expected ones.
-        tests.forEach((testName, testData) -> {
-            TestUtil.test(testName, TestUtil.areEqual(testData.getActualOutput(), testData.getExpectedOutput()));
-        });
+        TestUtil.run(tests);
     }
 
     // String conversion solution.

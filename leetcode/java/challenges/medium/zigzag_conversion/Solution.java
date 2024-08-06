@@ -3,29 +3,31 @@ package leetcode.java.challenges.medium.zigzag_conversion;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import leetcode.java.utils.TestData;
 import leetcode.java.utils.TestUtil;
 
 public class Solution {
+    private static String method = "Solution";
+
     public static void main(String[] args) {
-        // Test suite collection:
-        LinkedHashMap<String, TestData> tests = new LinkedHashMap<String, TestData>();
+        // Tests and their inputs with expected outputs:
+        LinkedHashMap<String, TestData<String>> tests = new LinkedHashMap<String, TestData<String>>();
+        LinkedHashMap<Input, String> inputs = new LinkedHashMap<Input, String>();
+        inputs.put(new Input("PAYPALISHIRING", 3), "PAHNAPLSIIGYIR");
+        inputs.put(new Input("PAYPALISHIRING", 4), "PINALSIGYAHRPI");
+        inputs.put(new Input("A", 1), "A");
+        inputs.put(new Input("AB", 1), "AB");
+        inputs.put(new Input("ABC", 1), "ABC");
 
         // Hash Table tests:
-        tests.put("Hash Table test 1 (s: \"PAYPALISHIRING\", numRows: 3): ",
-                new TestData(convertHashTable("PAYPALISHIRING", 3), "PAHNAPLSIIGYIR"));
-        tests.put("Hash Table test 2 (s: \"PAYPALISHIRING\", numRows: 4): ",
-                new TestData(convertHashTable("PAYPALISHIRING", 4), "PINALSIGYAHRPI"));
-        tests.put("Hash Table test 3 (s: \"A\", numRows: 1): ",
-                new TestData(convertHashTable("A", 1), "A"));
-        tests.put("Hash Table test 4 (s: \"AB\", numRows: 1): ",
-                new TestData(convertHashTable("AB", 1), "AB"));
-        tests.put("Hash Table test 5 (s: \"ABC\", numRows: 1): ",
-                new TestData(convertHashTable("ABC", 1), "ABC"));
+        method = "Hash Table";
+        inputs.forEach((input, expectedOutput) -> {
+            tests.put(method + " - " + input.getInput1() + ", " + input.getInput2(),
+                    new TestData<String>(convertHashTable(input.getInput1(), input.getInput2()), expectedOutput));
+        });
 
         // Compare all output results with expected ones.
-        tests.forEach((testName, testData) -> {
-            TestUtil.test(testName, TestUtil.areEqual(testData.getActualOutput(), testData.getExpectedOutput()));
-        });
+        TestUtil.run(tests);
     }
 
     // Hash Table solution.

@@ -15,4 +15,23 @@ public class ListNode {
         this.val = val;
         this.next = next;
     }
+
+    public String toString() {
+        String constructed = "[";
+        if (next != null) {
+            constructed += Integer.toString(val) + ",";
+            return next.toString(constructed);
+        } else {
+            return constructed + Integer.toString(val) + "]";
+        }
+    }
+
+    public String toString(String constructed) {
+        if (next != null) {
+            constructed += Integer.toString(val) + ",";
+            return next.toString(constructed);
+        } else {
+            return constructed + Integer.toString(val) + "]";
+        }
+    }
 }

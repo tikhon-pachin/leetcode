@@ -1,28 +1,31 @@
 package leetcode.java.challenges.hard.median_of_two_sorted_arrays;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 
+import leetcode.java.utils.TestData;
 import leetcode.java.utils.TestUtil;
 
 public class Solution {
+    private static String method = "Solution";
+
     public static void main(String[] args) {
-        // Test suite collection:
-        LinkedHashMap<String, TestData> tests = new LinkedHashMap<String, TestData>();
+        // Tests and their inputs with expected outputs:
+        LinkedHashMap<String, TestData<Double>> tests = new LinkedHashMap<String, TestData<Double>>();
+        LinkedHashMap<Input, Double> inputs = new LinkedHashMap<Input, Double>();
+        inputs.put(new Input(new int[] { 1, 3 }, new int[] { 2 }), 2.0);
+        inputs.put(new Input(new int[] { 1, 2 }, new int[] { 3, 4 }), 2.5);
+        inputs.put(new Input(new int[] { 3 }, new int[] { -2, -1 }), -1.0);
+        inputs.put(new Input(new int[] { 0 }, new int[] { 0 }), 0.0);
 
         // Tests:
-        tests.put("Test 1 (nums1: [1,3], nums2: [2]): ",
-                new TestData(findMedianSortedArrays(new int[] { 1, 3 }, new int[] { 2 }), 2.0));
-        tests.put("Test 2 (nums1: [1,2], nums2: [3,4]): ",
-                new TestData(findMedianSortedArrays(new int[] { 1, 2 }, new int[] { 3, 4 }), 2.5));
-        tests.put("Test 3 (nums1: [3], nums2: [-2,-1]): ",
-                new TestData(findMedianSortedArrays(new int[] { 3 }, new int[] { -2, -1 }), -1.0));
-        tests.put("Test 4 (nums1: [0], nums2: [0]): ",
-                new TestData(findMedianSortedArrays(new int[] { 0 }, new int[] { 0 }), 0.0));
+        inputs.forEach((input, expectedOutput) -> {
+            tests.put(method + " - " + Arrays.toString(input.getInput1()) + ", " + Arrays.toString(input.getInput2()),
+                    new TestData<Double>(findMedianSortedArrays(input.getInput1(), input.getInput2()), expectedOutput));
+        });
 
         // Compare all output results with expected ones.
-        tests.forEach((testName, testData) -> {
-            TestUtil.test(testName, TestUtil.areEqual(testData.getActualOutput(), testData.getExpectedOutput()));
-        });
+        TestUtil.run(tests);
     }
 
     // Solution.

@@ -3,31 +3,31 @@ package leetcode.java.challenges.medium.longest_substring_without_repeating_char
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+import leetcode.java.utils.TestData;
 import leetcode.java.utils.TestUtil;
 
 public class Solution {
+    private static String method = "Solution";
+
     public static void main(String[] args) {
-        // Test suite collection:
-        LinkedHashMap<String, TestData> tests = new LinkedHashMap<String, TestData>();
+        // Tests and their inputs with expected outputs:
+        LinkedHashMap<String, TestData<Integer>> tests = new LinkedHashMap<String, TestData<Integer>>();
+        LinkedHashMap<Input, Integer> inputs = new LinkedHashMap<Input, Integer>();
+        inputs.put(new Input("abcabcbb"), 3);
+        inputs.put(new Input("bbbbb"), 1);
+        inputs.put(new Input("pwwkew"), 3);
+        inputs.put(new Input(" "), 1);
+        inputs.put(new Input("dvdf"), 3);
+        inputs.put(new Input("aabaab!bb"), 3);
 
         // Tests:
-        tests.put("Test 1 (input: \"abcabcbb\"): ",
-                new TestData(lengthOfLongestSubstring("abcabcbb"), 3));
-        tests.put("Test 2 (input: \"bbbbb\"): ",
-                new TestData(lengthOfLongestSubstring("bbbbb"), 1));
-        tests.put("Test 3 (input: \"pwwkew\"): ",
-                new TestData(lengthOfLongestSubstring("pwwkew"), 3));
-        tests.put("Test 4 (input: \" \"): ",
-                new TestData(lengthOfLongestSubstring(" "), 1));
-        tests.put("Test 5 (input: \"dvdf\"): ",
-                new TestData(lengthOfLongestSubstring("dvdf"), 3));
-        tests.put("Test 6 (input: \"aabaab!bb\"): ",
-                new TestData(lengthOfLongestSubstring("aabaab!bb"), 3));
+        inputs.forEach((input, expectedOutput) -> {
+            tests.put(method + " - " + input.getInput1(),
+                    new TestData<Integer>(lengthOfLongestSubstring(input.getInput1()), expectedOutput));
+        });
 
         // Compare all output results with expected ones.
-        tests.forEach((testName, testData) -> {
-            TestUtil.test(testName, TestUtil.areEqual(testData.getActualOutput(), testData.getExpectedOutput()));
-        });
+        TestUtil.run(tests);
     }
 
     // Solution.

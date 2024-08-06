@@ -2,41 +2,44 @@ package leetcode.java.challenges.medium.add_two_numbers;
 
 import java.util.LinkedHashMap;
 
+import leetcode.java.utils.TestData;
 import leetcode.java.utils.TestUtil;
 
 public class Solution {
+    private static String method = "Solution";
+
     public static void main(String[] args) {
-        // Test suite collection:
-        LinkedHashMap<String, TestData> tests = new LinkedHashMap<String, TestData>();
-        ListNode test1Input1 = new ListNode(2, new ListNode(4, new ListNode(3)));
-        ListNode test1Input2 = new ListNode(5, new ListNode(6, new ListNode(4)));
-        ListNode test2Input1 = new ListNode(0);
-        ListNode test2Input2 = new ListNode(0);
-        ListNode test3Input1 = new ListNode(9,
-                new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9)))))));
-        ListNode test3Input2 = new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9))));
-        ListNode test4Input1 = new ListNode(2, new ListNode(4, new ListNode(9)));
-        ListNode test4Input2 = new ListNode(5, new ListNode(6, new ListNode(4, new ListNode(9))));
+        // Tests and their inputs with expected outputs:
+        LinkedHashMap<String, TestData<ListNode>> tests = new LinkedHashMap<String, TestData<ListNode>>();
+        LinkedHashMap<Input, ListNode> inputs = new LinkedHashMap<Input, ListNode>();
+        inputs.put(
+                new Input(new ListNode(2, new ListNode(4, new ListNode(3))),
+                        new ListNode(5, new ListNode(6, new ListNode(4)))),
+                new ListNode(7, new ListNode(0, new ListNode(8))));
+        inputs.put(
+                new Input(new ListNode(0),
+                        new ListNode(0)),
+                new ListNode(0));
+        inputs.put(
+                new Input(new ListNode(9,
+                        new ListNode(9,
+                                new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9))))))),
+                        new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9))))),
+                new ListNode(8, new ListNode(9, new ListNode(9, new ListNode(9,
+                        new ListNode(0, new ListNode(0, new ListNode(0, new ListNode(1)))))))));
+        inputs.put(
+                new Input(new ListNode(2, new ListNode(4, new ListNode(9))),
+                        new ListNode(5, new ListNode(6, new ListNode(4, new ListNode(9))))),
+                new ListNode(7, new ListNode(0, new ListNode(4, new ListNode(0, new ListNode(1))))));
 
         // Tests:
-        tests.put("Test 1 (input1: [2,4,3], input2: [5,6,4]): ",
-                new TestData(addTwoNumbers(test1Input1, test1Input2),
-                        new ListNode(7, new ListNode(0, new ListNode(8)))));
-        tests.put("Test 2 (input1: [0], input2: [0]): ",
-                new TestData(addTwoNumbers(test2Input1, test2Input2),
-                        new ListNode(0)));
-        tests.put("Test 3 (input1: [9,9,9,9,9,9,9], input2: [9,9,9,9]): ",
-                new TestData(addTwoNumbers(test3Input1, test3Input2),
-                        new ListNode(8, new ListNode(9, new ListNode(9, new ListNode(9,
-                                new ListNode(0, new ListNode(0, new ListNode(0, new ListNode(1))))))))));
-        tests.put("Test 4 (input1: [2,4,9], input2: [5,6,4,9]): ",
-                new TestData(addTwoNumbers(test4Input1, test4Input2),
-                        new ListNode(7, new ListNode(0, new ListNode(4, new ListNode(0, new ListNode(1)))))));
+        inputs.forEach((input, expectedOutput) -> {
+            tests.put(method + " - " + input.getInput1().toString() + ", " + input.getInput2().toString(),
+                    new TestData<ListNode>(addTwoNumbers(input.getInput1(), input.getInput2()), expectedOutput));
+        });
 
         // Compare all output results with expected ones.
-        tests.forEach((testName, testData) -> {
-            TestUtil.test(testName, TestUtil.areEqual(testData.getActualOutput(), testData.getExpectedOutput()));
-        });
+        TestUtil.run(tests);
     }
 
     // Solution.
